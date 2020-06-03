@@ -1,20 +1,37 @@
 <?php 
+
+
+
+
 session_start();
 error_reporting(0);
+
+
+
+
 include('includes/config.php');
 if(isset($_POST['submit'])){
 		if(!empty($_SESSION['cart'])){
+
+
 		foreach($_POST['quantity'] as $key => $val){
 			if($val==0){
 				unset($_SESSION['cart'][$key]);
 			}else{
-				$_SESSION['cart'][$key]['quantity']=$val;
+				 $_SESSION['cart'][$key]['quantity']=$val;
 
 			}
 		}
 			echo "<script>alert('Your Cart hasbeen Updated');</script>";
 		}
 	}
+
+
+
+
+
+
+
 // Code for Remove a Product from Cart
 if(isset($_POST['remove_code']))
 	{
@@ -27,6 +44,13 @@ if(!empty($_SESSION['cart'])){
 			echo "<script>alert('Your Cart has been Updated');</script>";
 	}
 }
+
+
+
+
+
+
+
 // code for insert product in order table
 
 
@@ -72,9 +96,7 @@ header('location:payment-method.php');
 	    <title>My Cart</title>
 	    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	    <link rel="stylesheet" href="assets/css/main.css">
-	    <link rel="stylesheet" href="assets/css/green.css">
-	    <link rel="stylesheet" href="assets/css/owl.carousel.css">
-		<link rel="stylesheet" href="assets/css/owl.transitions.css">
+	    
 		<!--<link rel="stylesheet" href="assets/css/owl.theme.css">-->
 		<link href="assets/css/lightbox.css" rel="stylesheet">
 		<link rel="stylesheet" href="assets/css/animate.min.css">
@@ -106,10 +128,14 @@ header('location:payment-method.php');
 	
 		<!-- ============================================== HEADER ============================================== -->
 <header class="header-style-1">
-<?php include('includes/top-header.php');?>
+<?php //include('includes/top-header.php');?>
 <?php include('includes/main-header.php');?>
-<?php include('includes/menu-bar.php');?>
+<?php //include('includes/menu-bar.php');?>
 </header>
+
+
+
+
 <!-- ============================================== HEADER : END ============================================== -->
 <div class="breadcrumb">
 	<div class="container">
@@ -129,9 +155,15 @@ header('location:payment-method.php');
 				<div class="col-md-12 col-sm-12 shopping-cart-table ">
 	<div class="table-responsive">
 <form name="cart" method="post">	
+
+
+
+
 <?php
 if(!empty($_SESSION['cart'])){
 	?>
+
+
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -158,6 +190,9 @@ if(!empty($_SESSION['cart'])){
 				</tr>
 			</tfoot>
 			<tbody>
+
+
+
  <?php
  $pdtid=array();
     $sql = "SELECT * FROM products WHERE id IN(";
@@ -176,8 +211,58 @@ if(!empty($_SESSION['cart'])){
 				$_SESSION['qnty']=$totalqunty+=$quantity;
 
 				array_push($pdtid,$row['id']);
-//print_r($_SESSION['pid'])=$pdtid;exit;
+
+
+
+
+
+
+//to print array data 
+
+
+
+
+
+
+
+
+
+
+// echo "<hr/>";
+// print_r($_SESSION);
+
+// echo "<hr/>";
+
+// echo "<hr/>";
+
+// print_r($pdtid);
+// echo "<hr/>";
+
+// echo "<hr/>";
+// print_r($row);
+// echo "<hr/>";
+
+// echo "<hr/>";
+// print_r($rt);
+
 	?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 				<tr>
 					<td class="romove-item"><input type="checkbox" name="remove_code[]" value="<?php echo htmlentities($row['id']);?>" /></td>
@@ -316,16 +401,23 @@ while ($rt=mysqli_fetch_array($qry)) {
 				</tr>
 		</tbody><!-- /tbody -->
 	</table>
-	<?php } else {
+
+
+
+	<?php   
+		}  else {
 echo "Your shopping Cart is empty";
 		}?>
-</div>			</div>
+
+
+
+		</div>		
+		</div>
 		</div> 
 		</form>
-<?php echo include('includes/brands-slider.php');?>
 </div>
 </div>
-<?php include('includes/footer.php');?>
+
 
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
 	
